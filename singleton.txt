@@ -1,0 +1,2 @@
+This is the file of the singleton test.
+The singleton test create two instance of a class and the both of them mapping the same file on the same memory as requested!

@@ -2,13 +2,13 @@ CC = gcc
 CXX = g++
 FLAGS = -Wall -g -w
 
-all:test pipe_line_server pollServer pollClient singleton_test guard_test
+all:main1 pipe_line_server pollServer pollClient singleton_test guard_test
 
-test: test.c clib.so
-	$(CC) $(FLAGS) test.c -o test ./clib.so
+main1: main1.c clib.so
+	$(CC) $(FLAGS) main1.c -o main1 ./clib.so
 
-singleton_test: singleton_test.cpp cpplib.so
-	$(CXX) $(FLAGS) singleton_test.cpp -o singleton_test ./cpplib.so
+singleton_test: singleton.cpp cpplib.so
+	$(CXX) $(FLAGS) singleton.cpp -o singleton_test ./cpplib.so
 
 guard_test: guard_test.cpp cpplib.so
 	$(CXX) $(FLAGS) guard_test.cpp -o guard_test ./cpplib.so
@@ -31,4 +31,4 @@ clib.so: queue.c queue.h active_object.c active_object.h
 	$(CC) $(FLAGS) --shared -fPIC queue.c active_object.c -o clib.so -lpthread
 
 clean:
-	rm -f *.o *.so test pipe_line_server pollServer pollClient singleton_test guard_test
+	rm -f *.o *.so main1 pipe_line_server pollServer pollClient singleton_test guard_test
