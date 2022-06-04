@@ -16,7 +16,7 @@ using namespace std;
  */
 class Test {
 private:
-    friend class Singleton<Test>; // The statement Test Friends for singleton class templates
+    friend class Singleton<Test>; // using this declaration the class can create an instance of the class using the Instance() function call
     char * str;
     struct stat st;
 
