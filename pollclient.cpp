@@ -66,7 +66,7 @@ int get_client_fd(int argc, char *argv[]){
 
     inet_ntop(p->ai_family, get_in_addr((struct sockaddr *) p->ai_addr),
               s, sizeof s);
-    printf("client: connecting to %s\n", s);
+    printf("client: connected to %s\n", s);
 
     freeaddrinfo(servinfo); // all done with this structure
 
@@ -81,6 +81,7 @@ void recv_handler(int *fd){
         exit(1);
     }
     buf[bytes] = '\0';
+    printf("%s", buf);
 }
 
 void send_handler(int *fd){
@@ -100,7 +101,6 @@ void send_handler(int *fd){
 int main(int argc, char *argv[]) {
     pReactor pr = (pReactor) newReactor();
     clientfd = get_client_fd(argc, argv);
-    printf("connect to server you can send messages now!\n");
     InstallHandler(pr, (void (*)(void*)) recv_handler, clientfd);
     InstallHandler(pr, (void (*)(void*)) send_handler, STDIN_FILENO);
     pthread_join(pr->thread, NULL);
