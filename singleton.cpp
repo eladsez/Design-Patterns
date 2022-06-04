@@ -17,10 +17,10 @@ using namespace std;
 class Test {
 private:
     friend class Singleton<Test>; // using this declaration the class can create an instance of the class using the Instance() function call
-    char * str;
+    char *str;
     struct stat st;
 
-    Test(){
+    Test() {
         int fd = open("./singleton.txt", O_RDONLY);
         if (fd == -1) {
             perror("open");
@@ -57,12 +57,19 @@ int main() {
     cout << "pt1: " << pt1 << endl;
     cout << "pt2: " << pt2 << endl << endl;
 
-    cout << "pt1 file content: "<< endl;
+    cout << "pt1 file content: " << endl;
     pt1->print_file_content(); // Print the content of the file
     cout << endl << endl;
 
     cout << "pt2 file content: " << endl;
     pt2->print_file_content(); // This will print the same file as pt1
     cout << endl;
+
+    printf("\033[1;35m"); // change text color
+    if (pt1 == pt2) {
+        cout << "singleton test end successfully" << endl;
+    } else {
+        cout << "singleton test failed" << endl;
+    }
     return 0;
 }

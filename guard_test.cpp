@@ -39,5 +39,13 @@ int main() {
     pthread_create(&t2, nullptr, thread_func2, nullptr);
 
     pthread_join(t2, nullptr);
+
+    printf("\033[1;35m"); // change text color
+    if (a == 0) {
+        printf("guard test end successfully!");
+    }else {
+        printf("guard test failed!");
+    }
+    printf("\n");
     return 0;
 }
